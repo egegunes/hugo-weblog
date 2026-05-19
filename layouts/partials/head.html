@@ -42,3 +42,6 @@
 {{- with .Description | default site.Params.description }}
 <meta property="og:description" content="{{ . }}">
 {{- end }}
+
+{{- /* Site-supplied additions. Override partials/head-extra.html in your site to inject custom tags. */ -}}
+{{ partial "head-extra.html" . }}

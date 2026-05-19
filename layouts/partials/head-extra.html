@@ -1,0 +1,14 @@
+{{- /*
+  Override this partial in your site's layouts/partials/head-extra.html to inject
+  custom tags into <head>: analytics, web fonts, verification meta, custom CSS,
+  whatever. Hugo loads your site's version over the theme's empty default.
+
+  The current page is available as `.` so you can branch by .IsHome, .Section, etc.
+
+  Example (place at <your-site>/layouts/partials/head-extra.html):
+
+    {{- if .IsPage }}
+    <meta name="twitter:card" content="summary">
+    {{- end }}
+    <link rel="preconnect" href="https://example.com">
+*/ -}}
