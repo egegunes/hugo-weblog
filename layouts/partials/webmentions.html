@@ -1,0 +1,103 @@
+{{- /*
+  Build-time webmention rendering.
+  Fetches mentions of this page from webmention.io's jf2 API and renders:
+    - a facepile of likes / reposts / bookmarks
+    - threaded replies and mentions with content
+
+  Configure in site config:
+    [params.webmentions]
+      io_username  = "example.com"   # your webmention.io username
+      show         = true             # render the section (else: discovery tags only)
+      fetch_in_dev = false            # skip API calls during `hugo serve`
+*/ -}}
+
+{{- $cfg := site.Params.webmentions -}}
+{{- $enabled := and $cfg $cfg.io_username $cfg.show -}}
+{{- $skipDev := and hugo.IsServer (not $cfg.fetch_in_dev) -}}
+{{- if and $enabled (not $skipDev) -}}
+
+{{- $url := printf "https://webmention.io/api/mentions.jf2?target=%s&per-page=100" .Permalink -}}
+{{- with resources.GetRemote $url -}}
+  {{- with .Err -}}
+    {{- warnf "webmention fetch failed: %s" . -}}
+  {{- else -}}
+    {{- $data := .Content | transform.Unmarshal -}}
+    {{- $mentions := $data.children | default slice -}}
+
+    {{- $facepile := where $mentions "wm-property" "in" (slice "like-of" "repost-of" "bookmark-of") -}}
+    {{- $replies  := where $mentions "wm-property" "in" (slice "in-reply-to" "mention-of") -}}
+
+    {{- if or $facepile $replies }}
+    <section class="webmentions">
+      <h4>Webmentions</h4>
+
+      {{- if $facepile }}
+      <div class="webmention-facepile">
+        {{- range $facepile -}}
+          {{- $prop := index . "wm-property" -}}
+          {{- $verb := "mentioned" -}}
+          {{- if eq $prop "like-of"     -}}{{ $verb = "liked" }}{{- end -}}
+          {{- if eq $prop "repost-of"   -}}{{ $verb = "reposted" }}{{- end -}}
+          {{- if eq $prop "bookmark-of" -}}{{ $verb = "bookmarked" }}{{- end -}}
+          {{- $author := .author | default dict -}}
+          {{- $name := $author.name | default "Someone" -}}
+          {{- $href := .url | default $author.url -}}
+        <a class="facepile-item facepile-{{ $prop }}"
+           href="{{ $href }}"
+           title="{{ $name }} {{ $verb }} this"
+           rel="noopener external">
+          {{- if $author.photo }}
+          <img src="{{ $author.photo }}" alt="{{ $name }}" loading="lazy" width="32" height="32">
+          {{- else }}
+          <span class="facepile-initial">{{ substr $name 0 1 }}</span>
+          {{- end }}
+        </a>
+        {{- end }}
+      </div>
+      {{- end }}
+
+      {{- if $replies }}
+      <ul class="webmention-replies">
+        {{- range $replies -}}
+          {{- $prop := index . "wm-property" -}}
+          {{- $author := .author | default dict -}}
+          {{- $name := $author.name | default "Someone" -}}
+          {{- $content := .content | default dict -}}
+          {{- $html := $content.html | default "" -}}
+          {{- $text := $content.text | default "" -}}
+          {{- $kind := "mentioned" -}}
+          {{- if eq $prop "in-reply-to" -}}{{ $kind = "replied" }}{{- end }}
+        <li class="webmention-reply wm-{{ $prop }}">
+          <header class="reply-header">
+            {{- if $author.photo }}
+            <img class="reply-avatar" src="{{ $author.photo }}" alt="" loading="lazy" width="28" height="28">
+            {{- end }}
+            <span class="reply-meta">
+              {{- if $author.url -}}
+              <a href="{{ $author.url }}" rel="noopener external">{{ $name }}</a>
+              {{- else -}}
+              {{ $name }}
+              {{- end }} {{ $kind }}
+              {{- with .url }} (<a href="{{ . }}" rel="noopener external">source</a>){{ end }}
+              {{- with .published -}}
+              &nbsp;&middot;&nbsp;<time datetime="{{ . }}">{{ dateFormat "2 Jan 2006" . }}</time>
+              {{- end -}}
+            </span>
+          </header>
+          <div class="reply-body">
+            {{- if $html -}}
+              {{ $html | safeHTML }}
+            {{- else if $text -}}
+              <p>{{ $text }}</p>
+            {{- end -}}
+          </div>
+        </li>
+        {{- end }}
+      </ul>
+      {{- end }}
+    </section>
+    {{- end }}
+  {{- end -}}
+{{- end -}}
+
+{{- end -}}

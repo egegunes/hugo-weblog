@@ -368,6 +368,103 @@ a:hover, a:focus { color: var(--link-hover); }
   margin-right: 0.25rem;
 }
 
+/* ---------- Webmentions ---------- */
+
+.webmentions {
+  margin: 3rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+}
+.webmentions h4 {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg-muted);
+  margin: 0 0 0.8rem;
+}
+
+.webmention-facepile {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 1.2rem;
+}
+.facepile-item {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-alt);
+  border: 1px solid var(--rule);
+  text-decoration: none;
+  position: relative;
+  flex-shrink: 0;
+}
+.facepile-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.facepile-initial {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--sans);
+  font-weight: 700;
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+}
+.facepile-item.facepile-like-of     { border-color: var(--accent); }
+.facepile-item.facepile-repost-of   { border-color: var(--link); }
+.facepile-item.facepile-bookmark-of { border-color: var(--fg-muted); }
+
+.webmention-replies {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.webmention-reply {
+  margin: 0 0 1rem;
+  padding: 0.8rem 1rem;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--rule);
+}
+.webmention-reply.wm-in-reply-to { border-left-color: var(--link); }
+.webmention-reply.wm-mention-of  { border-left-color: var(--fg-faint); }
+
+.reply-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 0.4rem;
+}
+.reply-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.reply-meta {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+}
+.reply-meta a { color: var(--fg); text-decoration: none; }
+.reply-meta a:hover { color: var(--link-hover); text-decoration: underline; }
+.reply-body {
+  font-size: 0.95rem;
+}
+.reply-body p { margin: 0 0 0.6rem; }
+.reply-body p:last-child { margin-bottom: 0; }
+
 /* ---------- Pagination ---------- */
 
 .pagination {

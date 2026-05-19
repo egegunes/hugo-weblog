@@ -10,8 +10,12 @@
   {{ partial "page-static.html" . }}
 {{- end -}}
 
-{{- $tags := .Params.tags -}}
 {{- $isPost := in (slice "entries" "links" "quotations") $section -}}
+{{- if $isPost }}
+  {{ partial "webmentions.html" . }}
+{{- end }}
+
+{{- $tags := .Params.tags -}}
 {{- if and $isPost $tags }}
 {{- $related := where (where site.RegularPages "Permalink" "ne" .Permalink) "Params.tags" "intersect" $tags -}}
 {{- $related = first 5 $related -}}

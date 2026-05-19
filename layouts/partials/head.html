@@ -23,6 +23,12 @@
 <link rel="stylesheet" href="{{ . | relURL }}">
 {{- end }}
 
+{{- /* Webmention discovery (opt-in via [params.webmentions] io_username) */ -}}
+{{- with site.Params.webmentions.io_username }}
+<link rel="webmention" href="https://webmention.io/{{ . }}/webmention" />
+<link rel="pingback" href="https://webmention.io/{{ . }}/xmlrpc" />
+{{- end }}
+
 {{- /* Open Graph */ -}}
 <meta property="og:site_name" content="{{ site.Title }}">
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">

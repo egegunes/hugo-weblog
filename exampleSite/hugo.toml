@@ -9,6 +9,16 @@ enableEmoji = true
   tagline = "Things noticed, things found, things saved."
   footerNote = "Powered by Hugo and the <a href=\"https://github.com/egegunes/hugo-weblog\">weblog</a> theme."
 
+# Webmentions (opt-in). Sign up at https://webmention.io with your domain,
+# then uncomment and set io_username to the username it gives you.
+# Discovery <link> tags are emitted whenever io_username is set; mentions
+# are fetched at build time and displayed under each post when show = true.
+#
+# [params.webmentions]
+#   io_username  = "example.com"   # your webmention.io username
+#   show         = true            # render the webmentions section under posts
+#   fetch_in_dev = false           # set true to fetch during `hugo serve` too
+
 # [taxonomies], [outputs], and [services.rss] are inherited from the theme.
 # Override only if you want different behavior here.
 
