@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} &middot; {{ site.Title }}{{ end }}</title>
+{{- with site.Params.description }}
+<meta name="description" content="{{ . }}">
+{{- end }}
+{{- with site.Params.author }}
+<meta name="author" content="{{ . }}">
+{{- end }}
+
+{{- /* Auto-discover feeds: include this page's feed (section/tag/home) and always the site-wide one */ -}}
+{{- range .AlternativeOutputFormats -}}
+  {{- if eq .MediaType.SubType "rss" -}}
+<link rel="alternate" type="{{ .MediaType.Type }}" href="{{ .Permalink }}" title="{{ $.Title | default site.Title }}{{ if not $.IsHome }} — {{ site.Title }}{{ end }}">
+  {{- end -}}
+{{- end -}}
+{{- if not .IsHome }}
+<link rel="alternate" type="application/rss+xml" href="{{ "/index.xml" | absURL }}" title="{{ site.Title }} (all posts)">
+{{- end }}
+
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+{{- with site.Params.customCSS }}
+<link rel="stylesheet" href="{{ . | relURL }}">
+{{- end }}
+
+{{- /* Open Graph */ -}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with .Description | default site.Params.description }}
+<meta property="og:description" content="{{ . }}">
+{{- end }}

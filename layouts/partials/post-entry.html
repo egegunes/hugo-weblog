@@ -1,0 +1,29 @@
+{{- $p := .page -}}
+{{- $summary := .summary -}}
+<article class="post post-entry" id="post-{{ $p.File.UniqueID }}">
+  <header class="post-header">
+    <h3 class="post-title">
+      <a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+    </h3>
+    <p class="post-meta">
+      <a class="permalink" href="{{ $p.RelPermalink }}" title="Permalink">
+        <time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "15:04" }}</time>
+      </a>
+    </p>
+  </header>
+
+  <div class="post-body">
+    {{- if $summary -}}
+      {{- if $p.Truncated -}}
+        {{ $p.Summary }}
+        <p class="more"><a href="{{ $p.RelPermalink }}">Read the rest &rarr;</a></p>
+      {{- else -}}
+        {{ $p.Content }}
+      {{- end -}}
+    {{- else -}}
+      {{ $p.Content }}
+    {{- end -}}
+  </div>
+
+  {{ partial "post-tags.html" $p }}
+</article>

@@ -1,0 +1,23 @@
+baseURL = "https://example.com/"
+languageCode = "en-us"
+title = "A Weblog"
+theme = "weblog"
+enableEmoji = true
+[params]
+  author = "Jane Reader"
+  description = "Notes, links, and quotations. An old-school weblog."
+  tagline = "Things noticed, things found, things saved."
+  footerNote = "Powered by Hugo and the <a href=\"https://github.com/egegunes/hugo-weblog\">weblog</a> theme."
+
+# [taxonomies], [outputs], and [services.rss] are inherited from the theme.
+# Override only if you want different behavior here.
+
+[pagination]
+  pagerSize = 20
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style = "tango"
+    noClasses = false

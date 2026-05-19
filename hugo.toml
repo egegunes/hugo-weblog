@@ -1,0 +1,14 @@
+# Theme defaults. Sites using this theme inherit these and can override.
+# This file is merged with the site's own config — only set values that
+# represent a theme requirement, not a personal taste.
+
+[outputs]
+  home    = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  term    = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+
+[services.rss]
+  limit = 30

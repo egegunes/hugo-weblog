@@ -1,0 +1,7 @@
+<footer class="site-footer">
+  <p>
+    &copy; {{ now.Format "2006" }} {{ site.Params.author | default site.Title }}.
+    {{- with site.Params.footerNote }} {{ . | safeHTML }}{{ end }}
+    &middot; <a href="{{ "/index.xml" | relURL }}">Atom feed</a>
+  </p>
+</footer>

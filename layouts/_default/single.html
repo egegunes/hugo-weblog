@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{- $type := .Section -}}
+{{- if eq $type "links" -}}
+  {{ partial "post-link.html" (dict "page" . "summary" false) }}
+{{- else if eq $type "quotations" -}}
+  {{ partial "post-quotation.html" (dict "page" . "summary" false) }}
+{{- else -}}
+  {{ partial "post-entry-full.html" . }}
+{{- end -}}
+
+{{- $tags := .Params.tags -}}
+{{- if $tags }}
+{{- $related := where (where site.RegularPages "Permalink" "ne" .Permalink) "Params.tags" "intersect" $tags -}}
+{{- $related = first 5 $related -}}
+{{- if $related }}
+<section class="previously">
+  <h4>Previously</h4>
+  <ul>
+    {{- range $related }}
+    <li>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>:
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+    {{- end }}
+  </ul>
+</section>
+{{- end }}
+{{- end }}
+{{ end }}

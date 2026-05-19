@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- $sections := slice "entries" "links" "quotations" -}}
+{{- $pages := where site.RegularPages "Section" "in" $sections -}}
+{{- $paginator := .Paginate $pages -}}
+
+{{- $lastDay := "" -}}
+{{- range $paginator.Pages -}}
+  {{- $day := .Date.Format "2006-01-02" -}}
+  {{- if ne $day $lastDay -}}
+    {{- if ne $lastDay "" }}
+    </section>
+    {{- end }}
+    <section class="day" id="{{ $day }}">
+      <h2 class="day-heading"><a href="#{{ $day }}">{{ .Date.Format "Monday, 2 January 2006" }}</a></h2>
+  {{- end -}}
+  {{- $lastDay = $day -}}
+
+  {{ partial "post-summary.html" . }}
+{{- end -}}
+{{- if ne $lastDay "" }}
+    </section>
+{{- end }}
+
+{{ partial "pagination.html" . }}
+{{ end }}

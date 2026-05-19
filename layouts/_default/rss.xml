@@ -1,0 +1,51 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ if eq .Title site.Title }}{{ site.Title }}{{ else }}{{ with .Title }}{{ . }} on {{ end }}{{ site.Title }}{{ end }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ with site.Params.description }}{{ . }}{{ else }}Recent posts on {{ site.Title }}{{ end }}</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>{{ site.Language.Lang }}</language>
+    {{- with site.Params.author }}
+    <managingEditor>{{ . }}</managingEditor>
+    <webMaster>{{ . }}</webMaster>
+    {{- end }}
+    <copyright>&#169; {{ now.Format "2006" }} {{ site.Params.author | default site.Title }}</copyright>
+    <lastBuildDate>{{ now.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    <atom:link href="{{ .Permalink }}index.xml" rel="self" type="application/rss+xml" />
+
+    {{- $sections := slice "entries" "links" "quotations" -}}
+    {{- $pages := .RegularPages -}}
+    {{- if .IsHome -}}
+      {{- $pages = where site.RegularPages "Section" "in" $sections -}}
+    {{- end -}}
+    {{- $limit := site.Config.Services.RSS.Limit | default 30 -}}
+    {{- if ge $limit 1 -}}
+      {{- $pages = first $limit $pages -}}
+    {{- end -}}
+
+    {{- range $pages }}
+    <item>
+      <title>{{- if eq .Section "quotations" -}}Quote: {{ end -}}{{ .Title }}</title>
+      <link>{{- if eq .Section "links" -}}{{ with .Params.link }}{{ . }}{{ else }}{{ .Permalink }}{{ end }}{{ else }}{{ .Permalink }}{{ end -}}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid isPermaLink="false">{{ .Permalink }}</guid>
+      {{- with site.Params.author }}
+      <author>{{ . }}</author>
+      {{- end }}
+      <description>
+        {{- if eq .Section "quotations" -}}
+          {{- printf "<blockquote>%s</blockquote>" (.Params.quote | markdownify) | html -}}
+          {{- with .Params.source -}}{{- printf "<p>— %s</p>" . | html -}}{{- end -}}
+          {{- .Content | html -}}
+        {{- else -}}
+          {{- .Content | html -}}
+        {{- end -}}
+      </description>
+      {{- range .Params.tags }}
+      <category>{{ . }}</category>
+      {{- end }}
+    </item>
+    {{- end }}
+  </channel>
+</rss>

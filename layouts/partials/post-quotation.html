@@ -1,0 +1,32 @@
+{{- $p := .page -}}
+<article class="post post-quotation" id="post-{{ $p.File.UniqueID }}">
+  <header class="post-header">
+    <h3 class="post-title">
+      <a href="{{ $p.RelPermalink }}">Quote: {{ $p.Title }}</a>
+    </h3>
+    <p class="post-meta">
+      <a class="permalink" href="{{ $p.RelPermalink }}" title="Permalink">#</a>
+      <time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "15:04" }}</time>
+    </p>
+  </header>
+
+  <blockquote class="quote">
+    {{ $p.Params.quote | markdownify }}
+    {{- with $p.Params.source }}
+    <footer class="quote-attribution">
+      &mdash;
+      {{- with $p.Params.source_url }} <cite><a href="{{ . }}" rel="external">{{ $p.Params.source | markdownify }}</a></cite>
+      {{- else }} <cite>{{ . | markdownify }}</cite>
+      {{- end }}
+    </footer>
+    {{- end }}
+  </blockquote>
+
+  {{- with $p.Content }}
+  <div class="post-body commentary">
+    {{ . }}
+  </div>
+  {{- end }}
+
+  {{ partial "post-tags.html" $p }}
+</article>

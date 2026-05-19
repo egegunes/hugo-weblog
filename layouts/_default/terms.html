@@ -1,0 +1,20 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+</header>
+
+{{- $terms := .Data.Terms.ByCount -}}
+{{- $max := 1 -}}
+{{- range $terms }}{{ if gt .Count $max }}{{ $max = .Count }}{{ end }}{{ end -}}
+
+<ul class="tag-cloud">
+  {{- range $terms -}}
+    {{- $weight := div (mul .Count 100) $max -}}
+    {{- $size := add 80 (div (mul $weight 12) 10) -}}
+    <li>
+      <a href="{{ .Page.RelPermalink }}" style="font-size: {{ $size }}%">{{ .Page.Title }}</a>
+      <span class="count">({{ .Count }})</span>
+    </li>
+  {{- end -}}
+</ul>
+{{ end }}

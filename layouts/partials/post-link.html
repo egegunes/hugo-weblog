@@ -1,0 +1,34 @@
+{{- $p := .page -}}
+{{- $link := $p.Params.link -}}
+{{- $host := "" -}}
+{{- with $link -}}
+  {{- $u := urls.Parse . -}}
+  {{- $host = $u.Host -}}
+{{- end -}}
+<article class="post post-link" id="post-{{ $p.File.UniqueID }}">
+  <header class="post-header">
+    <h3 class="post-title">
+      <a href="{{ $link | default $p.RelPermalink }}" rel="external">{{ $p.Title }}</a>
+      {{- with $host }} <span class="host">[{{ . }}]</span>{{ end -}}
+    </h3>
+    <p class="post-meta">
+      <a class="permalink" href="{{ $p.RelPermalink }}" title="Permalink">#</a>
+      <time datetime="{{ $p.Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ $p.Date.Format "15:04" }}</time>
+    </p>
+  </header>
+
+  <div class="post-body">
+    {{ $p.Content }}
+  </div>
+
+  {{- with $p.Params.via }}
+  <p class="via">
+    Via
+    {{- with $p.Params.via_url }} <a href="{{ . }}" rel="external">{{ $.page.Params.via }}</a>
+    {{- else }} {{ . }}
+    {{- end }}.
+  </p>
+  {{- end }}
+
+  {{ partial "post-tags.html" $p }}
+</article>

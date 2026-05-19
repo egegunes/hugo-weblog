@@ -1,0 +1,21 @@
+<header class="masthead">
+  <h1 class="site-title"><a href="{{ "/" | relURL }}">{{ site.Title }}</a></h1>
+  {{- with site.Params.tagline }}
+  <p class="tagline">{{ . }}</p>
+  {{- end }}
+  <nav class="site-nav">
+    <ul>
+      <li><a href="{{ "/" | relURL }}">home</a></li>
+      <li><a href="{{ "/archive/" | relURL }}">archive</a></li>
+      <li><a href="{{ "/tags/" | relURL }}">tags</a></li>
+      {{- range site.Menus.main }}
+      <li><a href="{{ .URL | relURL }}">{{ .Name | lower }}</a></li>
+      {{- end }}
+      {{- $feed := "/index.xml" | relURL -}}
+      {{- range .AlternativeOutputFormats -}}
+        {{- if eq .MediaType.SubType "rss" -}}{{ $feed = .RelPermalink }}{{- end -}}
+      {{- end }}
+      <li><a href="{{ $feed }}" class="feed">feed</a></li>
+    </ul>
+  </nav>
+</header>

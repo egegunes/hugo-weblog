@@ -1,0 +1,35 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title | default "Archive" }}</h1>
+  {{- with .Content }}
+  <div class="page-intro">{{ . }}</div>
+  {{- end }}
+</header>
+
+{{- $sections := slice "entries" "links" "quotations" -}}
+{{- $pages := where site.RegularPages "Section" "in" $sections -}}
+{{- $byYear := $pages.GroupByDate "2006" -}}
+
+<div class="archive">
+  {{- range $byYear }}
+  <section class="archive-year" id="y-{{ .Key }}">
+    <h2><a href="#y-{{ .Key }}">{{ .Key }}</a></h2>
+    {{- $byMonth := .Pages.GroupByDate "January" -}}
+    {{- range $byMonth }}
+    <section class="archive-month">
+      <h3>{{ .Key }}</h3>
+      <ul>
+        {{- range .Pages }}
+        <li>
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan" }}</time>
+          <span class="type-badge type-{{ .Section }}">{{ .Section | singularize }}</span>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+        {{- end }}
+      </ul>
+    </section>
+    {{- end }}
+  </section>
+  {{- end }}
+</div>
+{{ end }}
