@@ -5,7 +5,7 @@ draft: false
 tags: ["attention", "essays", "notebook"]
 previously:
   - notes-on-postgres-vacuum
-  - /quotations/dijkstra-on-tools/
+  - /quotes/dijkstra-on-tools/
 ---
 
 There's a particular feeling, sometime around the third hour of poking at a

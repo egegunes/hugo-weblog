@@ -6,7 +6,7 @@
   {{- end }}
 </header>
 
-{{- $sections := slice "entries" "links" "quotations" -}}
+{{- $sections := slice "entries" "links" "quotes" -}}
 {{- $pages := where site.RegularPages "Section" "in" $sections -}}
 {{- $byYear := $pages.GroupByDate "2006" -}}
 

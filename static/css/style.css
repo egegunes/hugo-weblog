@@ -307,9 +307,9 @@ a:hover, a:focus { color: var(--link-hover); }
   margin: 0.6rem 0 0;
 }
 
-/* ---------- Quotation post ---------- */
+/* ---------- Quote post ---------- */
 
-.post-quotation .quote {
+.post-quote .quote {
   margin: 0.4rem 0 0.6rem;
   padding: 0.5rem 0 0.5rem 1.2rem;
   border-left: 4px solid var(--accent);
@@ -318,8 +318,8 @@ a:hover, a:focus { color: var(--link-hover); }
   font-style: italic;
   color: var(--fg);
 }
-.post-quotation .quote p { margin: 0 0 0.7rem; }
-.post-quotation .quote p:last-of-type { margin-bottom: 0.3rem; }
+.post-quote .quote p { margin: 0 0 0.7rem; }
+.post-quote .quote p:last-of-type { margin-bottom: 0.3rem; }
 .quote-attribution {
   display: block;
   margin-top: 0.4rem;
@@ -716,7 +716,7 @@ a:hover, a:focus { color: var(--link-hover); }
 }
 .type-badge.type-entries     { color: var(--fg-muted); }
 .type-badge.type-links       { color: var(--link); }
-.type-badge.type-quotations  { color: var(--accent); }
+.type-badge.type-quotes      { color: var(--accent); }
 
 /* ---------- Tag cloud ---------- */
 

@@ -1,8 +1,8 @@
 {{- $type := .Section -}}
 {{- if eq $type "links" -}}
   {{ partial "post-link.html" (dict "page" . "summary" true) }}
-{{- else if eq $type "quotations" -}}
-  {{ partial "post-quotation.html" (dict "page" . "summary" true) }}
+{{- else if eq $type "quotes" -}}
+  {{ partial "post-quote.html" (dict "page" . "summary" true) }}
 {{- else -}}
   {{ partial "post-entry.html" (dict "page" . "summary" true) }}
 {{- end -}}

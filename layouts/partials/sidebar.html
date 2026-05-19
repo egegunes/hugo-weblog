@@ -1,5 +1,5 @@
 {{- /* Right sidebar. Each block hides if it has no data. */ -}}
-{{- $sections := slice "entries" "links" "quotations" -}}
+{{- $sections := slice "entries" "links" "quotes" -}}
 {{- $posts := where site.RegularPages "Section" "in" $sections -}}
 {{- $buttons := site.Params.buttons -}}
 {{- $webrings := site.Params.webrings -}}

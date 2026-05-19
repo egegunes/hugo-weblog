@@ -5,7 +5,7 @@ theme = "weblog"
 enableEmoji = true
 [params]
   author = "Jane Reader"
-  description = "Notes, links, and quotations. An old-school weblog."
+  description = "Notes, links, and quotes. An old-school weblog."
   tagline = "Things noticed, things found, things saved."
   footerNote = "Powered by Hugo and the <a href=\"https://github.com/egegunes/hugo-weblog\">weblog</a> theme."
 

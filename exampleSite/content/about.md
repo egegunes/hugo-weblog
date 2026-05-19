@@ -15,7 +15,7 @@ permanence and a date, even if they're short:
   took me more than half a day to think through.
 - **Links.** Short pointers to things I found worth reading. The title
   links out; my commentary is the bit in your own voice underneath.
-- **Quotations.** Sentences I want to remember, attributed, with a line
+- **Quotes.** Sentences I want to remember, attributed, with a line
   or two about why they stuck.
 
 There's a mixed feed at the [front page](/), per-stream feeds for each

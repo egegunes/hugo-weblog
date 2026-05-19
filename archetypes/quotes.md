@@ -10,4 +10,4 @@ tags: []
 # previously: ["slug-or-/full/path/"]   # earlier posts you're explicitly linking back to
 ---
 
-Optional commentary below the quotation.
+Optional commentary below the quote.

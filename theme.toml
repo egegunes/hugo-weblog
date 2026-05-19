@@ -1,10 +1,10 @@
 name = "Weblog"
 license = "MIT"
 licenselink = "https://github.com/egegunes/hugo-weblog/blob/master/LICENSE"
-description = "An old-school weblog theme for Hugo. Reverse-chronological mixed feed of entries, links, and quotations."
+description = "An old-school weblog theme for Hugo. Reverse-chronological mixed feed of entries, links, and quotes."
 homepage = "https://github.com/egegunes/hugo-weblog"
 tags = ["blog", "minimal", "personal", "weblog"]
-features = ["entries", "links", "quotations", "tags", "atom", "archives"]
+features = ["entries", "links", "quotes", "tags", "atom", "archives"]
 min_version = "0.121.0"
 
 [author]
