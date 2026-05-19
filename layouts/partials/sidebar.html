@@ -1,0 +1,66 @@
+{{- /* Right sidebar. Each block hides if it has no data. */ -}}
+{{- $sections := slice "entries" "links" "quotations" -}}
+{{- $posts := where site.RegularPages "Section" "in" $sections -}}
+{{- $buttons := site.Params.buttons -}}
+{{- $webrings := site.Params.webrings -}}
+
+<aside class="sidebar">
+
+  {{- /* Archives — year → month, with counts */ -}}
+  {{- with $posts }}
+  <section class="sidebar-block sidebar-archives">
+    <h3>Archives</h3>
+    <ul class="archive-list">
+      {{- range .GroupByDate "2006" }}
+      <li class="archive-year">
+        <a href="{{ "/archive/" | relURL }}#y-{{ .Key }}">{{ .Key }}</a>
+        <ul class="archive-months">
+          {{- range .Pages.GroupByDate "January" }}
+          <li>
+            <a href="{{ "/archive/" | relURL }}#y-{{ (index .Pages 0).Date.Format "2006" }}">{{ .Key }}</a>
+            <span class="count">{{ len .Pages }}</span>
+          </li>
+          {{- end }}
+        </ul>
+      </li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
+  {{- /* 88x31 buttons */ -}}
+  {{- with $buttons }}
+  <section class="sidebar-block sidebar-buttons">
+    <h3>Friends &amp; neighbours</h3>
+    <div class="buttons">
+      {{- range . }}
+      <a href="{{ .url }}" {{ if not (hasPrefix .url "/") }}rel="external"{{ end }} title="{{ .title | default .alt }}">
+        <img src="{{ .image | relURL }}" alt="{{ .alt }}" width="88" height="31" loading="lazy">
+      </a>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+
+  {{- /* Webrings */ -}}
+  {{- with $webrings }}
+  <section class="sidebar-block sidebar-webrings">
+    <h3>Webrings</h3>
+    {{- range . }}
+      {{- $name := .name | default "A webring" -}}
+      {{- $url := .url -}}
+    <div class="webring">
+      {{- if $url }}<p class="webring-name"><a href="{{ $url }}" rel="external">{{ $name }}</a></p>
+      {{- else }}<p class="webring-name">{{ $name }}</p>
+      {{- end }}
+      <p class="webring-nav">
+        {{- with .previous_url }}<a href="{{ . }}" rel="external">&larr; prev</a>{{ end }}
+        {{- with .random_url }} &middot; <a href="{{ . }}" rel="external">random</a>{{ end }}
+        {{- with .next_url }} &middot; <a href="{{ . }}" rel="external">next &rarr;</a>{{ end }}
+      </p>
+    </div>
+    {{- end }}
+  </section>
+  {{- end }}
+
+</aside>

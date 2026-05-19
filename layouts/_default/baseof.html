@@ -6,9 +6,12 @@
 <body>
   <div class="page">
     {{- partial "header.html" . -}}
-    <main class="content">
-      {{- block "main" . }}{{ end -}}
-    </main>
+    <div class="layout">
+      <main class="content">
+        {{- block "main" . }}{{ end -}}
+      </main>
+      {{- partial "sidebar.html" . -}}
+    </div>
     {{- partial "footer.html" . -}}
   </div>
 </body>

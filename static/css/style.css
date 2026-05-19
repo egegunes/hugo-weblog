@@ -22,7 +22,9 @@
   --sans:   -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono:   ui-monospace, SFMono-Regular, Menlo, Consolas, 'DejaVu Sans Mono', monospace;
 
-  --measure: 38rem;                  /* readable line length */
+  --measure:    38rem;               /* readable line length */
+  --sidebar:    14rem;               /* sidebar width */
+  --gutter:     2.5rem;              /* gap between content and sidebar */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,14 +58,24 @@ body {
 }
 
 .page {
-  max-width: var(--measure);
-  margin: 0 auto;
+  /* Left-anchored, fills the viewport. Content grows to fill width - sidebar. */
+  margin: 0;
   padding: 1.5rem 1.25rem 4rem;
 }
 
 @media (min-width: 60rem) {
-  .page { padding-top: 2.5rem; }
+  .page {
+    padding: 2.5rem clamp(2rem, 4vw, 5rem) 4rem clamp(2rem, 4vw, 5rem);
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--sidebar);
+    column-gap: var(--gutter);
+    align-items: start;
+  }
 }
+
+.content { min-width: 0; }
 
 /* ---------- Masthead ---------- */
 
@@ -464,6 +476,118 @@ a:hover, a:focus { color: var(--link-hover); }
 }
 .reply-body p { margin: 0 0 0.6rem; }
 .reply-body p:last-child { margin-bottom: 0; }
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--fg-muted);
+}
+
+.sidebar-block {
+  margin: 0 0 2.2rem;
+}
+.sidebar-block:first-child { margin-top: 0.2rem; }
+
+.sidebar-block h3 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--fg);
+  margin: 0 0 0.6rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Archives */
+.archive-list { list-style: none; padding: 0; margin: 0; }
+.archive-list > li.archive-year { margin: 0 0 0.5rem; }
+.archive-list > li.archive-year > a {
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+.archive-list > li.archive-year > a:hover { color: var(--link-hover); }
+.archive-months {
+  list-style: none;
+  padding: 0 0 0 0.6rem;
+  margin: 0.15rem 0 0;
+  border-left: 1px solid var(--rule);
+}
+.archive-months li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 0.1rem 0 0.1rem 0.5rem;
+  font-size: 0.8rem;
+}
+.archive-months a {
+  color: var(--fg-muted);
+  text-decoration: none;
+}
+.archive-months a:hover { color: var(--link-hover); text-decoration: underline; }
+.archive-months .count {
+  color: var(--fg-faint);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 88x31 buttons */
+.sidebar-buttons .buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.sidebar-buttons .buttons a {
+  display: inline-block;
+  line-height: 0;
+}
+.sidebar-buttons .buttons img {
+  width: 88px;
+  height: 31px;
+  display: block;
+  image-rendering: pixelated;       /* keep classic crisp pixels for true 88x31 GIFs */
+  border: 1px solid var(--rule);
+  background: var(--bg);
+}
+.sidebar-buttons .buttons a:hover img { border-color: var(--link); }
+
+/* Webrings */
+.sidebar-webrings .webring {
+  margin: 0 0 1rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--bg-alt);
+  border-left: 3px solid var(--accent);
+}
+.sidebar-webrings .webring:last-child { margin-bottom: 0; }
+.sidebar-webrings .webring-name {
+  margin: 0 0 0.2rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+.sidebar-webrings .webring-name a { color: var(--fg); text-decoration: none; }
+.sidebar-webrings .webring-name a:hover { color: var(--link-hover); text-decoration: underline; }
+.sidebar-webrings .webring-nav {
+  margin: 0;
+  font-size: 0.78rem;
+  color: var(--fg-faint);
+}
+.sidebar-webrings .webring-nav a { color: var(--link); text-decoration: none; }
+.sidebar-webrings .webring-nav a:hover { text-decoration: underline; }
+
+/* On narrow viewports the sidebar stacks below the content with a clear break */
+@media (max-width: 59.99rem) {
+  .sidebar {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--fg);
+  }
+}
 
 /* ---------- Pagination ---------- */
 

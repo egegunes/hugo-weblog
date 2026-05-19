@@ -9,6 +9,34 @@ enableEmoji = true
   tagline = "Things noticed, things found, things saved."
   footerNote = "Powered by Hugo and the <a href=\"https://github.com/egegunes/hugo-weblog\">weblog</a> theme."
 
+# 88x31 buttons — small images shown in the right sidebar.
+# Drop your buttons in static/buttons/ (PNG/GIF, 88x31 px) and reference them here.
+[[params.buttons]]
+  image = "/buttons/jane-reader.png"
+  url   = "/about/"
+  alt   = "Jane Reader's weblog"
+  title = "This very weblog"
+
+[[params.buttons]]
+  image = "/buttons/old-web.png"
+  url   = "https://example.org/oldweb"
+  alt   = "Old web is best web"
+  title = "Old web is best web"
+
+[[params.buttons]]
+  image = "/buttons/iwbnvfn.png"
+  url   = "https://example.org/iwbnvfn"
+  alt   = "I write blogs, not Very Fast Notes"
+  title = "I write blogs, not Very Fast Notes"
+
+# Webrings — show a small block with prev/random/next nav per ring.
+[[params.webrings]]
+  name         = "The Old Web Webring"
+  url          = "https://example.org/oldweb-ring/"
+  previous_url = "https://example.org/oldweb-ring/prev?from=example.com"
+  random_url   = "https://example.org/oldweb-ring/random"
+  next_url     = "https://example.org/oldweb-ring/next?from=example.com"
+
 # Webmentions (opt-in). Sign up at https://webmention.io with your domain,
 # then uncomment and set io_username to the username it gives you.
 # Discovery <link> tags are emitted whenever io_username is set; mentions
