@@ -23,7 +23,7 @@
         {{- end }}
       <li{{ if $isActive }} class="active"{{ end }}><a href="{{ $url }}">{{ .Name | lower }}</a></li>
       {{- end }}
-      <li><a href="{{ $feed }}" class="feed">feed</a></li>
+      <li><a href="{{ $feed }}" class="feed">rss</a></li>
       {{- if not (eq site.Params.theme_toggle false) }}
       <li class="theme-toggle-item">
         <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Cycle theme">
