@@ -1,0 +1,11 @@
+{{- /* Renders: "1,234 words · 5 min read". Drops "min read" for very short pieces. */ -}}
+{{- $words := .WordCount -}}
+{{- $minutes := .ReadingTime -}}
+{{- $wordsFmt := lang.FormatNumberCustom 0 $words "., " -}}
+<span class="post-stats">
+  <span class="word-count">{{ $wordsFmt }} word{{ if ne $words 1 }}s{{ end }}</span>
+  {{- if ge $minutes 2 }}
+  <span class="sep">·</span>
+  <span class="reading-time">{{ $minutes }} min read</span>
+  {{- end }}
+</span>

@@ -258,8 +258,20 @@ a:hover, a:focus { color: var(--link-hover); }
 .more {
   font-family: var(--sans);
   font-size: 0.9rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 .more a { font-style: italic; }
+.more-stats {
+  color: var(--fg-faint);
+  font-size: 0.78rem;
+}
+
+.post-stats { white-space: nowrap; }
+.post-stats .sep { margin: 0 0.15em; color: var(--fg-faint); }
+.post-meta .post-stats { color: inherit; }
 
 /* ---------- Link post ---------- */
 

@@ -16,7 +16,10 @@
     {{- if $summary -}}
       {{- if $p.Truncated -}}
         {{ $p.Summary }}
-        <p class="more"><a href="{{ $p.RelPermalink }}">Read the rest &rarr;</a></p>
+        <p class="more">
+          <a href="{{ $p.RelPermalink }}">Read the rest &rarr;</a>
+          <span class="more-stats">{{ partial "post-stats.html" $p }}</span>
+        </p>
       {{- else -}}
         {{ $p.Content }}
       {{- end -}}
