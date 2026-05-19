@@ -514,6 +514,26 @@ a:hover, a:focus { color: var(--link-hover); }
   border-bottom: 1px solid var(--rule);
 }
 
+/* Sidebar menu */
+.sidebar-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar-menu li {
+  padding: 0.15rem 0;
+  font-size: 0.88rem;
+}
+.sidebar-menu a {
+  color: var(--fg);
+  text-decoration: none;
+}
+.sidebar-menu a:hover { color: var(--link-hover); text-decoration: underline; }
+.sidebar-menu li.active a {
+  color: var(--accent);
+  font-weight: 700;
+}
+
 /* Archives */
 .archive-list { list-style: none; padding: 0; margin: 0; }
 .archive-list > li.archive-year { margin: 0 0 0.5rem; }

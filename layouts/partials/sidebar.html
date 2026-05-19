@@ -6,6 +6,25 @@
 
 <aside class="sidebar">
 
+  {{- /* Custom sidebar menu — configure via [[menu.sidebar]] in site config
+         or via `menu: sidebar` in a page's frontmatter */ -}}
+  {{- $here := .RelPermalink -}}
+  {{- with site.Menus.sidebar }}
+  <section class="sidebar-block sidebar-menu">
+    <h3>{{ site.Params.sidebar_menu_title | default "Pages" }}</h3>
+    <ul>
+      {{- range . -}}
+        {{- $url := .URL | relURL -}}
+        {{- $isActive := or ($.IsMenuCurrent "sidebar" .) ($.HasMenuCurrent "sidebar" .) -}}
+        {{- if and (not $isActive) (ne $url ("/" | relURL)) -}}
+          {{- $isActive = hasPrefix $here $url -}}
+        {{- end }}
+      <li{{ if $isActive }} class="active"{{ end }}><a href="{{ $url }}">{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
+  </section>
+  {{- end }}
+
   {{- /* Archives — year → month, with counts */ -}}
   {{- with $posts }}
   <section class="sidebar-block sidebar-archives">

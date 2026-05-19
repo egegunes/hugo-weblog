@@ -9,6 +9,24 @@ enableEmoji = true
   tagline = "Things noticed, things found, things saved."
   footerNote = "Powered by Hugo and the <a href=\"https://github.com/egegunes/hugo-weblog\">weblog</a> theme."
 
+# Sidebar menu — appears above the archives in the right sidebar.
+# Use `[[menu.sidebar]]` here, or add `menu: sidebar` to a page's frontmatter.
+# The block header is "Pages" by default; override with `sidebar_menu_title`.
+[[menu.sidebar]]
+  name   = "Entries"
+  url    = "/entries/"
+  weight = 10
+
+[[menu.sidebar]]
+  name   = "Links"
+  url    = "/links/"
+  weight = 20
+
+[[menu.sidebar]]
+  name   = "Quotes"
+  url    = "/quotes/"
+  weight = 30
+
 # 88x31 buttons — small images shown in the right sidebar.
 # Drop your buttons in static/buttons/ (PNG/GIF, 88x31 px) and reference them here.
 [[params.buttons]]
