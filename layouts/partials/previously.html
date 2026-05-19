@@ -1,0 +1,22 @@
+{{- /* Renders a jwz-style "Previously, previously, …" line from .Params.previously.
+       Each entry can be a slug or full content path; resolved via site.GetPage.
+       Unresolved refs warn at build time so typos surface. */ -}}
+{{- with .Params.previously -}}
+  {{- $refs := slice -}}
+  {{- range . -}}
+    {{- $ref := site.GetPage . -}}
+    {{- if $ref -}}
+      {{- $refs = $refs | append $ref -}}
+    {{- else -}}
+      {{- warnf "previously: could not resolve %q on %s" . $.Path -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if $refs }}
+<p class="previously">
+  {{- range $i, $ref := $refs -}}
+    {{- if $i }}, {{ end -}}
+    <a href="{{ $ref.RelPermalink }}" title="{{ $ref.Title }} ({{ $ref.Date.Format "2 Jan 2006" }})">{{ if $i }}previously{{ else }}Previously{{ end }}</a>
+  {{- end -}}.
+</p>
+  {{- end }}
+{{- end -}}

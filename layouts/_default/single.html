@@ -15,22 +15,4 @@
   {{ partial "webmentions.html" . }}
 {{- end }}
 
-{{- with .Params.previously }}
-<section class="previously">
-  <h4>Previously</h4>
-  <ul>
-    {{- range . }}
-      {{- $ref := site.GetPage . -}}
-      {{- if $ref }}
-    <li>
-      <time datetime="{{ $ref.Date.Format "2006-01-02" }}">{{ $ref.Date.Format "2 Jan 2006" }}</time>:
-      <a href="{{ $ref.RelPermalink }}">{{ $ref.Title }}</a>
-    </li>
-      {{- else }}
-      {{- warnf "previously: could not resolve %q on %s" . $.Path }}
-      {{- end }}
-    {{- end }}
-  </ul>
-</section>
-{{- end }}
 {{ end }}

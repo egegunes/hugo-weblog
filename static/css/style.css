@@ -381,36 +381,17 @@ a:hover, a:focus { color: var(--link-hover); }
 }
 .post-tags a:hover { text-decoration: underline; }
 
-/* ---------- Previously ---------- */
+/* ---------- Previously (jwz-style inline) ---------- */
 
 .previously {
-  margin: 3rem 0 0;
-  padding: 1rem 1.1rem;
-  background: var(--bg-alt);
-  border-left: 3px solid var(--rule);
-}
-.previously h4 {
+  margin: 2.5rem 0 0;
+  padding-top: 1rem;
   font-family: var(--sans);
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  font-style: italic;
+  font-size: 0.95rem;
   color: var(--fg-muted);
-  margin: 0 0 0.6rem;
 }
-.previously ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0.9rem;
-}
-.previously li { margin: 0.2rem 0; }
-.previously time {
-  color: var(--fg-faint);
-  font-variant-numeric: tabular-nums;
-  font-family: var(--mono);
-  font-size: 0.85em;
-  margin-right: 0.25rem;
-}
+.previously a { color: var(--link); }
 
 /* ---------- Webmentions ---------- */
 
