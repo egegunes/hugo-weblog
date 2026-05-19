@@ -12,6 +12,7 @@
 
 {{- $isPost := in (slice "entries" "links" "quotes") $section -}}
 {{- if $isPost }}
+  {{ partial "post-reply.html" . }}
   {{ partial "webmentions.html" . }}
 {{- end }}
 

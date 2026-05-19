@@ -1,0 +1,21 @@
+{{- /*
+  Configurable "Reply to this post" block, rendered after each single post.
+
+  Two ways to use:
+
+  1. Quick: set the text in your site config (markdown supported):
+
+       [params.reply]
+         text = "Reply by sending an email to ege [at] example [dot] net."
+
+  2. Full control: override this partial in your site at
+     layouts/partials/post-reply.html. The current page is available as `.`,
+     so you can branch by section, title, etc.
+*/ -}}
+{{- with site.Params.reply -}}
+  {{- with .text }}
+<section class="post-reply">
+  {{ . | markdownify }}
+</section>
+  {{- end -}}
+{{- end -}}

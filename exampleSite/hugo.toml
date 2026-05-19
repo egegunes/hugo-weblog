@@ -9,6 +9,12 @@ enableEmoji = true
   tagline = "Things noticed, things found, things saved."
   footerNote = "Powered by Hugo and the <a href=\"https://github.com/egegunes/hugo-weblog\">weblog</a> theme."
 
+# Reply block — rendered after every single post (entries, links, quotes).
+# Markdown is supported. For full control, override layouts/partials/post-reply.html
+# in your site instead of setting this.
+[params.reply]
+  text = "Reply to this post by sending an email to **jane [at] example [dot] com**."
+
 # Sidebar menu — appears above the archives in the right sidebar.
 # Use `[[menu.sidebar]]` here, or add `menu: sidebar` to a page's frontmatter.
 # The block header is "Pages" by default; override with `sidebar_menu_title`.

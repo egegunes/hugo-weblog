@@ -393,6 +393,20 @@ a:hover, a:focus { color: var(--link-hover); }
 }
 .previously a { color: var(--link); }
 
+/* ---------- Post reply ---------- */
+
+.post-reply {
+  margin: 2.5rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--fg-muted);
+}
+.post-reply p { margin: 0; }
+.post-reply a { color: var(--link); }
+
 /* ---------- Webmentions ---------- */
 
 .webmentions {
