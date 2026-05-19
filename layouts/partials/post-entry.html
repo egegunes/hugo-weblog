@@ -13,16 +13,13 @@
   </header>
 
   <div class="post-body">
-    {{- if $summary -}}
-      {{- if $p.Truncated -}}
-        {{ $p.Summary }}
-        <p class="more">
-          <a href="{{ $p.RelPermalink }}">Read the rest &rarr;</a>
-          <span class="more-stats">{{ partial "post-stats.html" $p }}</span>
-        </p>
-      {{- else -}}
-        {{ $p.Content }}
-      {{- end -}}
+    {{- $hasMore := strings.Contains $p.RawContent "<!--more-->" -}}
+    {{- if and $summary $hasMore -}}
+      {{ $p.Summary }}
+      <p class="more">
+        <a href="{{ $p.RelPermalink }}">Read the rest &rarr;</a>
+        <span class="more-stats">{{ partial "post-stats.html" $p }}</span>
+      </p>
     {{- else -}}
       {{ $p.Content }}
     {{- end -}}
