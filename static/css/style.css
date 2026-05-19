@@ -196,8 +196,6 @@ a:hover, a:focus { color: var(--link-hover); }
 
 .post {
   margin: 0 0 2.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px dashed var(--rule);
 }
 .post:last-child { border-bottom: none; }
 
@@ -398,7 +396,6 @@ a:hover, a:focus { color: var(--link-hover); }
 .post-reply {
   margin: 2.5rem 0 0;
   padding-top: 1rem;
-  border-top: 1px solid var(--rule);
   font-family: var(--sans);
   font-style: italic;
   font-size: 0.95rem;

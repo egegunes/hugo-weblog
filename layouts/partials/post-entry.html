@@ -12,7 +12,7 @@
     {{- if and $summary $hasMore -}}
       {{ $p.Summary }}
       <p class="more">
-        <a href="{{ $p.RelPermalink }}">Read the rest &rarr;</a>
+        <a href="{{ $p.RelPermalink }}">Continue reading &rarr;</a>
         <span class="more-stats">{{ partial "post-stats.html" $p }}</span>
       </p>
     {{- else -}}

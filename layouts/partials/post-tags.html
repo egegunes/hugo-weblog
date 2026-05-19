@@ -1,6 +1,6 @@
 {{- with .Params.tags }}
 <p class="post-tags">
-  Filed under:
+  Tags:
   {{- range $i, $t := . }}{{ if $i }},{{ end }}
   <a href="{{ "/tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>
   {{- end }}
