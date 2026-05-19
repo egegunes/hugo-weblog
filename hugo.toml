@@ -3,7 +3,7 @@
 # represent a theme requirement, not a personal taste.
 
 [outputs]
-  home    = ["HTML", "RSS"]
+  home    = ["HTML", "RSS", "ROBOTS"]
   section = ["HTML", "RSS"]
   term    = ["HTML", "RSS"]
 

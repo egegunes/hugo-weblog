@@ -1,0 +1,6 @@
+# robots.txt for {{ site.Title }}
+
+User-agent: *
+Allow: /
+
+Sitemap: {{ "sitemap.xml" | absURL }}
