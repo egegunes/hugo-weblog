@@ -111,6 +111,7 @@ body {
 }
 .site-nav a { color: var(--fg-muted); text-decoration: none; }
 .site-nav a:hover { color: var(--link-hover); text-decoration: underline; }
+.site-nav li.active a { color: var(--fg); border-bottom: 2px solid var(--fg); padding-bottom: 1px; }
 .site-nav .feed { color: var(--accent); }
 
 /* ---------- Links (classic) ---------- */
@@ -396,6 +397,46 @@ a:hover, a:focus { color: var(--link-hover); }
   margin: 0.4rem 0 0;
 }
 .page-feed a { color: var(--accent); }
+
+/* Static pages (about, now, colophon, …) */
+.page-static .page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+.page-subtitle {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--fg-muted);
+  font-size: 1.05rem;
+  margin: 0.3rem 0 0;
+}
+.page-updated {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--fg-faint);
+  margin: 0.6rem 0 0;
+}
+.page-body {
+  margin-top: 1.6rem;
+  font-size: 1.02rem;
+}
+.page-body p { margin: 0 0 1rem; }
+.page-body h2, .page-body h3 {
+  font-family: var(--sans);
+  line-height: 1.25;
+  margin: 1.8rem 0 0.5rem;
+}
+.page-body h2 { font-size: 1.3rem; }
+.page-body h3 { font-size: 1.05rem; }
+.page-body ul, .page-body ol {
+  padding-left: 1.4rem;
+  margin: 0 0 1rem;
+}
+.page-body ul li { margin: 0.2rem 0; }
 
 .archive-year > h2 {
   font-family: var(--sans);

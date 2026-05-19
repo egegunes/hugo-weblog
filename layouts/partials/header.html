@@ -3,17 +3,27 @@
   {{- with site.Params.tagline }}
   <p class="tagline">{{ . }}</p>
   {{- end }}
+
+  {{- /* Resolve a contextual feed link for the current page */ -}}
+  {{- $feed := "/index.xml" | relURL -}}
+  {{- range .AlternativeOutputFormats -}}
+    {{- if eq .MediaType.SubType "rss" -}}{{ $feed = .RelPermalink }}{{- end -}}
+  {{- end -}}
+
+  {{- /* Active state helper: matches current page or any descendant of the menu URL */ -}}
+  {{- $here := .RelPermalink -}}
   <nav class="site-nav">
     <ul>
-      <li><a href="{{ "/" | relURL }}">home</a></li>
-      <li><a href="{{ "/archive/" | relURL }}">archive</a></li>
-      <li><a href="{{ "/tags/" | relURL }}">tags</a></li>
+      <li{{ if .IsHome }} class="active"{{ end }}><a href="{{ "/" | relURL }}">home</a></li>
+      <li{{ if hasPrefix $here ("/archive/" | relURL) }} class="active"{{ end }}><a href="{{ "/archive/" | relURL }}">archive</a></li>
+      <li{{ if or (hasPrefix $here ("/tags/" | relURL)) (eq .Kind "taxonomy") (eq .Kind "term") }} class="active"{{ end }}><a href="{{ "/tags/" | relURL }}">tags</a></li>
       {{- range site.Menus.main }}
-      <li><a href="{{ .URL | relURL }}">{{ .Name | lower }}</a></li>
-      {{- end }}
-      {{- $feed := "/index.xml" | relURL -}}
-      {{- range .AlternativeOutputFormats -}}
-        {{- if eq .MediaType.SubType "rss" -}}{{ $feed = .RelPermalink }}{{- end -}}
+        {{- $url := .URL | relURL -}}
+        {{- $isActive := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) -}}
+        {{- if and (not $isActive) (ne $url ("/" | relURL)) -}}
+          {{- $isActive = hasPrefix $here $url -}}
+        {{- end }}
+      <li{{ if $isActive }} class="active"{{ end }}><a href="{{ $url }}">{{ .Name | lower }}</a></li>
       {{- end }}
       <li><a href="{{ $feed }}" class="feed">feed</a></li>
     </ul>

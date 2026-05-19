@@ -1,15 +1,18 @@
 {{ define "main" }}
-{{- $type := .Section -}}
-{{- if eq $type "links" -}}
+{{- $section := .Section -}}
+{{- if eq $section "links" -}}
   {{ partial "post-link.html" (dict "page" . "summary" false) }}
-{{- else if eq $type "quotations" -}}
+{{- else if eq $section "quotations" -}}
   {{ partial "post-quotation.html" (dict "page" . "summary" false) }}
-{{- else -}}
+{{- else if eq $section "entries" -}}
   {{ partial "post-entry-full.html" . }}
+{{- else -}}
+  {{ partial "page-static.html" . }}
 {{- end -}}
 
 {{- $tags := .Params.tags -}}
-{{- if $tags }}
+{{- $isPost := in (slice "entries" "links" "quotations") $section -}}
+{{- if and $isPost $tags }}
 {{- $related := where (where site.RegularPages "Permalink" "ne" .Permalink) "Params.tags" "intersect" $tags -}}
 {{- $related = first 5 $related -}}
 {{- if $related }}
