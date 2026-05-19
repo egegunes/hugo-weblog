@@ -82,7 +82,7 @@ body {
 
 @media (min-width: 60rem) {
   .page {
-    padding: 2.5rem clamp(2rem, 4vw, 5rem) 4rem clamp(2rem, 4vw, 5rem);
+    padding: 2.5rem clamp(8rem, 18vw, 28rem) 4rem clamp(8rem, 18vw, 28rem);
   }
   .layout {
     display: grid;
