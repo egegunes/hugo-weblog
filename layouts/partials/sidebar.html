@@ -53,6 +53,9 @@
       {{- if $url }}<p class="webring-name"><a href="{{ $url }}" rel="external">{{ $name }}</a></p>
       {{- else }}<p class="webring-name">{{ $name }}</p>
       {{- end }}
+      {{- with .description }}
+      <p class="webring-desc">{{ . | markdownify }}</p>
+      {{- end }}
       <p class="webring-nav">
         {{- with .previous_url }}<a href="{{ . }}" rel="external">&larr; prev</a>{{ end }}
         {{- with .random_url }} &middot; <a href="{{ . }}" rel="external">random</a>{{ end }}

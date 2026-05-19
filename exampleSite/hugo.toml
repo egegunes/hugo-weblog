@@ -33,6 +33,7 @@ enableEmoji = true
 [[params.webrings]]
   name         = "The Old Web Webring"
   url          = "https://example.org/oldweb-ring/"
+  description  = "A ring of personal sites that remember the web before the algorithm."
   previous_url = "https://example.org/oldweb-ring/prev?from=example.com"
   random_url   = "https://example.org/oldweb-ring/random"
   next_url     = "https://example.org/oldweb-ring/next?from=example.com"

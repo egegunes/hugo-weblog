@@ -604,6 +604,14 @@ a:hover, a:focus { color: var(--link-hover); }
 }
 .sidebar-webrings .webring-name a { color: var(--fg); text-decoration: none; }
 .sidebar-webrings .webring-name a:hover { color: var(--link-hover); text-decoration: underline; }
+.sidebar-webrings .webring-desc {
+  margin: 0 0 0.4rem;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--fg-muted);
+  line-height: 1.45;
+}
+.sidebar-webrings .webring-desc a { color: var(--link); }
 .sidebar-webrings .webring-nav {
   margin: 0;
   font-size: 0.78rem;
