@@ -5,3 +5,31 @@
     &middot; <a href="{{ "/index.xml" | relURL }}">Atom feed</a>
   </p>
 </footer>
+
+{{- if not (eq site.Params.theme_toggle false) }}
+<script>
+(function(){
+  var html = document.documentElement;
+  var label = document.getElementById('theme-label');
+  var btn = document.getElementById('theme-toggle');
+  if (!btn || !label) return;
+  var order = ['auto', 'light', 'dark'];
+  function current() {
+    var t = html.getAttribute('data-theme');
+    return t === 'light' || t === 'dark' ? t : 'auto';
+  }
+  label.textContent = current();
+  btn.addEventListener('click', function() {
+    var next = order[(order.indexOf(current()) + 1) % order.length];
+    if (next === 'auto') {
+      html.removeAttribute('data-theme');
+      try { localStorage.removeItem('theme'); } catch (e) {}
+    } else {
+      html.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    }
+    label.textContent = next;
+  });
+})();
+</script>
+{{- end }}

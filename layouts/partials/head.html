@@ -18,6 +18,9 @@
 <link rel="alternate" type="application/rss+xml" href="{{ "/index.xml" | absURL }}" title="{{ site.Title }} (all posts)">
 {{- end }}
 
+{{- /* Theme: read stored preference and apply before paint to avoid FOUC */ -}}
+<script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 {{- with site.Params.customCSS }}
 <link rel="stylesheet" href="{{ . | relURL }}">

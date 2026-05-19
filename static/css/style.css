@@ -27,8 +27,12 @@
   --gutter:     2.5rem;              /* gap between content and sidebar */
 }
 
+/* Dark palette. Applied when:
+   - user explicitly chose dark via the toggle (data-theme="dark"), OR
+   - user is on auto (no data-theme set) AND system prefers dark.
+   The :not() guards make sure an explicit data-theme="light" wins over system dark. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --fg:           #e6e2d8;
     --fg-muted:     #a7a395;
     --fg-faint:     #7a7668;
@@ -41,6 +45,19 @@
     --accent:       #ff8a6b;
     --code-bg:      #24211c;
   }
+}
+:root[data-theme="dark"] {
+  --fg:           #e6e2d8;
+  --fg-muted:     #a7a395;
+  --fg-faint:     #7a7668;
+  --bg:           #161513;
+  --bg-alt:       #201d18;
+  --rule:         #3a362d;
+  --link:         #82b1ff;
+  --link-visited: #d7a4ff;
+  --link-hover:   #ff8a6b;
+  --accent:       #ff8a6b;
+  --code-bg:      #24211c;
 }
 
 * { box-sizing: border-box; }
@@ -125,6 +142,21 @@ body {
 .site-nav a:hover { color: var(--link-hover); text-decoration: underline; }
 .site-nav li.active a { color: var(--fg); border-bottom: 2px solid var(--fg); padding-bottom: 1px; }
 .site-nav .feed { color: var(--accent); }
+
+/* Theme toggle: a button styled as a nav link */
+.theme-toggle {
+  font: inherit;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-muted);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.theme-toggle:hover { color: var(--link-hover); text-decoration: underline; }
+.theme-toggle #theme-label { font-weight: 700; }
 
 /* ---------- Links (classic) ---------- */
 
