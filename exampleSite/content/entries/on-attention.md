@@ -3,6 +3,9 @@ title: "On attention, and the cost of paying it"
 date: 2026-05-19T09:30:00+03:00
 draft: false
 tags: ["attention", "essays", "notebook"]
+previously:
+  - notes-on-postgres-vacuum
+  - /quotations/dijkstra-on-tools/
 ---
 
 There's a particular feeling, sometime around the third hour of poking at a

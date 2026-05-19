@@ -15,22 +15,22 @@
   {{ partial "webmentions.html" . }}
 {{- end }}
 
-{{- $tags := .Params.tags -}}
-{{- if and $isPost $tags }}
-{{- $related := where (where site.RegularPages "Permalink" "ne" .Permalink) "Params.tags" "intersect" $tags -}}
-{{- $related = first 5 $related -}}
-{{- if $related }}
+{{- with .Params.previously }}
 <section class="previously">
   <h4>Previously</h4>
   <ul>
-    {{- range $related }}
+    {{- range . }}
+      {{- $ref := site.GetPage . -}}
+      {{- if $ref }}
     <li>
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 Jan 2006" }}</time>:
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+      <time datetime="{{ $ref.Date.Format "2006-01-02" }}">{{ $ref.Date.Format "2 Jan 2006" }}</time>:
+      <a href="{{ $ref.RelPermalink }}">{{ $ref.Title }}</a>
     </li>
+      {{- else }}
+      {{- warnf "previously: could not resolve %q on %s" . $.Path }}
+      {{- end }}
     {{- end }}
   </ul>
 </section>
-{{- end }}
 {{- end }}
 {{ end }}
