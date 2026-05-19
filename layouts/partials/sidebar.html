@@ -31,7 +31,7 @@
   {{- /* 88x31 buttons */ -}}
   {{- with $buttons }}
   <section class="sidebar-block sidebar-buttons">
-    <h3>Friends &amp; neighbours</h3>
+    <h3>The Wall</h3>
     <div class="buttons">
       {{- range . }}
       <a href="{{ .url }}" {{ if not (hasPrefix .url "/") }}rel="external"{{ end }} title="{{ .title | default .alt }}">
