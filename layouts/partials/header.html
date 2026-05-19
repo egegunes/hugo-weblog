@@ -14,8 +14,6 @@
   {{- $here := .RelPermalink -}}
   <nav class="site-nav">
     <ul>
-      <li{{ if .IsHome }} class="active"{{ end }}><a href="{{ "/" | relURL }}">home</a></li>
-      <li{{ if hasPrefix $here ("/archive/" | relURL) }} class="active"{{ end }}><a href="{{ "/archive/" | relURL }}">archive</a></li>
       <li{{ if or (hasPrefix $here ("/tags/" | relURL)) (eq .Kind "taxonomy") (eq .Kind "term") }} class="active"{{ end }}><a href="{{ "/tags/" | relURL }}">tags</a></li>
       {{- range site.Menus.main }}
         {{- $url := .URL | relURL -}}
