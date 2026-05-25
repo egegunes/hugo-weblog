@@ -17,6 +17,9 @@
       </p>
     {{- else -}}
       {{ $p.Content }}
+
+      {{ partial "previously.html" $p }}
+
     {{- end -}}
   </div>
 
