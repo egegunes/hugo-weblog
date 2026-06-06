@@ -16,6 +16,9 @@
   {{- with .text }}
 <section class="post-reply">
   {{ . | markdownify }}
+  <p>or comment on Bluesky:</p>
+  <sequoia-comments></sequoia-comments>
+  <script type="module" src="/js/sequoia-comments.js"></script>
 </section>
   {{- end -}}
 {{- end -}}
