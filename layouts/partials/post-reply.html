@@ -12,13 +12,15 @@
      layouts/partials/post-reply.html. The current page is available as `.`,
      so you can branch by section, title, etc.
 */ -}}
-{{- with site.Params.reply -}}
-  {{- with .text }}
 <section class="post-reply">
-  {{ . | markdownify }}
+  {{- with site.Params.reply -}}
+    {{- with .text }}
+      {{ . | markdownify }}
+    {{- end -}}
+  {{- end -}}
+  {{ if .Params.comments }}
   <p>or comment on Bluesky:</p>
   <sequoia-comments></sequoia-comments>
   <script type="module" src="/js/sequoia-comments.js"></script>
+  {{ end }}
 </section>
-  {{- end -}}
-{{- end -}}
