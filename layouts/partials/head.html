@@ -39,6 +39,9 @@
 <meta property="og:title" content="{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }}{{ end }}">
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
+{{- with site.Params.defaultCoverImage }}
+<meta property="og:image" content="{{ . }}">
+{{- end }}
 {{- with .Description | default site.Params.description }}
 <meta property="og:description" content="{{ . }}">
 {{- end }}
