@@ -404,6 +404,21 @@ a:hover, a:focus { color: var(--link-hover); }
 .post-reply p { margin: 0; }
 .post-reply a { color: var(--link); }
 
+/* Unified comments: bridge the site palette into the component's shadow DOM
+   so it follows the theme (including dark mode) instead of its own defaults. */
+unified-comments {
+  --sequoia-fg-color: var(--fg);
+  --sequoia-bg-alt: var(--bg-alt);
+  --sequoia-border-color: var(--rule);
+  --sequoia-accent-color: var(--link);
+  --sequoia-secondary-color: var(--fg-muted);
+  --sequoia-error-color: var(--accent);
+  --sequoia-font-family: var(--sans);
+  --sequoia-border-radius: 0;
+  font-style: normal; /* .post-reply is italic; comments are content */
+  margin-top: 1.25rem;
+}
+
 /* ---------- Webmentions ---------- */
 
 .webmentions {

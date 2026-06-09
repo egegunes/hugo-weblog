@@ -19,8 +19,8 @@
     {{- end -}}
   {{- end -}}
   {{ if .Params.comments }}
-  <p>or comment on Bluesky:</p>
-  <sequoia-comments></sequoia-comments>
-  <script type="module" src="/js/sequoia-comments.js"></script>
+  <p>or join the conversation:</p>
+  <unified-comments{{ with .Params.mastodonUrl }} mastodon-url="{{ . }}"{{ end }}{{ if eq (default true site.Params.commentAvatars) false }} avatars="false"{{ end }}></unified-comments>
+  <script type="module" src="/js/unified-comments.js"></script>
   {{ end }}
 </section>
